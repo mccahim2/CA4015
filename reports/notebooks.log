@@ -1,0 +1,62 @@
+Traceback (most recent call last):
+  File "/home/michael/anaconda3/lib/python3.7/site-packages/jupyter_cache/executors/utils.py", line 56, in single_nb_execution
+    record_timing=False,
+  File "/home/michael/anaconda3/lib/python3.7/site-packages/nbclient/client.py", line 1082, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/michael/anaconda3/lib/python3.7/site-packages/nbclient/util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/home/michael/anaconda3/lib/python3.7/site-packages/nbclient/util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "/home/michael/anaconda3/lib/python3.7/asyncio/base_events.py", line 587, in run_until_complete
+    return future.result()
+  File "/home/michael/anaconda3/lib/python3.7/site-packages/nbclient/client.py", line 536, in async_execute
+    cell, index, execution_count=self.code_cells_executed + 1
+  File "/home/michael/anaconda3/lib/python3.7/site-packages/nbclient/client.py", line 827, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/home/michael/anaconda3/lib/python3.7/site-packages/nbclient/client.py", line 735, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+total_95["Study_Type"] = index_95["Study"].values
+total_100["Study_Type"] = index_95["Study"].values
+total_150["Study_Type"] = index_150["Study"].values
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-12-39e3e68a6049>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0mtotal_95[0m[0;34m[[0m[0;34m"Study_Type"[0m[0;34m][0m [0;34m=[0m [0mindex_95[0m[0;34m[[0m[0;34m"Study"[0m[0;34m][0m[0;34m.[0m[0mvalues[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0mtotal_100[0m[0;34m[[0m[0;34m"Study_Type"[0m[0;34m][0m [0;34m=[0m [0mindex_95[0m[0;34m[[0m[0;34m"Study"[0m[0;34m][0m[0;34m.[0m[0mvalues[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0mtotal_150[0m[0;34m[[0m[0;34m"Study_Type"[0m[0;34m][0m [0;34m=[0m [0mindex_150[0m[0;34m[[0m[0;34m"Study"[0m[0;34m][0m[0;34m.[0m[0mvalues[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.7/site-packages/pandas/core/frame.py[0m in [0;36m__setitem__[0;34m(self, key, value)[0m
+[1;32m   2936[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2937[0m             [0;31m# set column[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 2938[0;31m             [0mself[0m[0;34m.[0m[0m_set_item[0m[0;34m([0m[0mkey[0m[0;34m,[0m [0mvalue[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   2939[0m [0;34m[0m[0m
+[1;32m   2940[0m     [0;32mdef[0m [0m_setitem_slice[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mkey[0m[0;34m,[0m [0mvalue[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.7/site-packages/pandas/core/frame.py[0m in [0;36m_set_item[0;34m(self, key, value)[0m
+[1;32m   2998[0m [0;34m[0m[0m
+[1;32m   2999[0m         [0mself[0m[0;34m.[0m[0m_ensure_valid_index[0m[0;34m([0m[0mvalue[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 3000[0;31m         [0mvalue[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_sanitize_column[0m[0;34m([0m[0mkey[0m[0;34m,[0m [0mvalue[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   3001[0m         [0mNDFrame[0m[0;34m.[0m[0m_set_item[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mkey[0m[0;34m,[0m [0mvalue[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   3002[0m [0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.7/site-packages/pandas/core/frame.py[0m in [0;36m_sanitize_column[0;34m(self, key, value, broadcast)[0m
+[1;32m   3634[0m [0;34m[0m[0m
+[1;32m   3635[0m             [0;31m# turn me into an ndarray[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 3636[0;31m             [0mvalue[0m [0;34m=[0m [0msanitize_index[0m[0;34m([0m[0mvalue[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0mindex[0m[0;34m,[0m [0mcopy[0m[0;34m=[0m[0;32mFalse[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   3637[0m             [0;32mif[0m [0;32mnot[0m [0misinstance[0m[0;34m([0m[0mvalue[0m[0;34m,[0m [0;34m([0m[0mnp[0m[0;34m.[0m[0mndarray[0m[0;34m,[0m [0mIndex[0m[0;34m)[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   3638[0m                 [0;32mif[0m [0misinstance[0m[0;34m([0m[0mvalue[0m[0;34m,[0m [0mlist[0m[0;34m)[0m [0;32mand[0m [0mlen[0m[0;34m([0m[0mvalue[0m[0;34m)[0m [0;34m>[0m [0;36m0[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.7/site-packages/pandas/core/internals/construction.py[0m in [0;36msanitize_index[0;34m(data, index, copy)[0m
+[1;32m    609[0m [0;34m[0m[0m
+[1;32m    610[0m     [0;32mif[0m [0mlen[0m[0;34m([0m[0mdata[0m[0;34m)[0m [0;34m!=[0m [0mlen[0m[0;34m([0m[0mindex[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 611[0;31m         [0;32mraise[0m [0mValueError[0m[0;34m([0m[0;34m"Length of values does not match length of index"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    612[0m [0;34m[0m[0m
+[1;32m    613[0m     [0;32mif[0m [0misinstance[0m[0;34m([0m[0mdata[0m[0;34m,[0m [0mABCIndexClass[0m[0;34m)[0m [0;32mand[0m [0;32mnot[0m [0mcopy[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mValueError[0m: Length of values does not match length of index
+ValueError: Length of values does not match length of index
+

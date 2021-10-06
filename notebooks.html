@@ -66,8 +66,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="TEST" href="preparation.html" />
-    <link rel="prev" title="Markdown Files" href="markdown.html" />
+    <link rel="next" title="Markdown Files" href="markdown.html" />
+    <link rel="prev" title="Introduction" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -109,14 +109,14 @@
  </li>
 </ul>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="markdown.html">
-   Markdown Files
-  </a>
- </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Data Exploration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown.html">
+   Markdown Files
   </a>
  </li>
  <li class="toctree-l1">
@@ -370,9 +370,235 @@ They are as follows:</p>
 </div>
 </div>
 <p>There are no null values in the choices data sets</p>
+<p>Due to the large number of data sets, it might make it simpler to join tables based on the number of trials</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Below I am making a new column for each number of trials. The new column shows to total won or lost per person.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_win_95</span> <span class="o">=</span> <span class="n">win_95</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">total_loss_95</span> <span class="o">=</span> <span class="n">loss_95</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">total_95</span> <span class="o">=</span> <span class="n">total_win_95</span> <span class="o">+</span> <span class="n">total_loss_95</span>
+
+<span class="n">total_win_100</span> <span class="o">=</span> <span class="n">win_100</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">total_loss_100</span> <span class="o">=</span> <span class="n">loss_100</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">total_100</span> <span class="o">=</span> <span class="n">total_win_100</span> <span class="o">+</span> <span class="n">total_loss_100</span>
+
+<span class="n">total_win_150</span> <span class="o">=</span> <span class="n">win_150</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">total_loss_150</span> <span class="o">=</span> <span class="n">loss_150</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">total_150</span> <span class="o">=</span> <span class="n">total_win_150</span> <span class="o">+</span> <span class="n">total_loss_150</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Making totals into pandas dataframes for further analysis</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_95</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">total_95</span><span class="p">)</span>
+<span class="n">total_95</span> <span class="o">=</span> <span class="n">total_95</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;Total&#39;</span><span class="p">})</span>
+
+<span class="n">total_100</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">total_100</span><span class="p">)</span>
+<span class="n">total_100</span> <span class="o">=</span> <span class="n">total_100</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;Total&#39;</span><span class="p">})</span>
+
+<span class="n">total_150</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">total_150</span><span class="p">)</span>
+<span class="n">total_150</span> <span class="o">=</span> <span class="n">total_150</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;Total&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_95</span><span class="p">[</span><span class="s2">&quot;Study_Type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index_95</span><span class="p">[</span><span class="s2">&quot;Study&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">total_100</span><span class="p">[</span><span class="s2">&quot;Study_Type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index_95</span><span class="p">[</span><span class="s2">&quot;Study&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">total_150</span><span class="p">[</span><span class="s2">&quot;Study_Type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index_150</span><span class="p">[</span><span class="s2">&quot;Study&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mf">39e3</span><span class="n">e68a6049</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">total_95</span><span class="p">[</span><span class="s2">&quot;Study_Type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index_95</span><span class="p">[</span><span class="s2">&quot;Study&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">total_100</span><span class="p">[</span><span class="s2">&quot;Study_Type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index_95</span><span class="p">[</span><span class="s2">&quot;Study&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">total_150</span><span class="p">[</span><span class="s2">&quot;Study_Type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index_150</span><span class="p">[</span><span class="s2">&quot;Study&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/core/frame.py</span> in <span class="ni">__setitem__</span><span class="nt">(self, key, value)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2936</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2937</span>             <span class="c1"># set column</span>
+<span class="ne">-&gt; </span><span class="mi">2938</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_set_item</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2939</span> 
+<span class="g g-Whitespace">   </span><span class="mi">2940</span>     <span class="k">def</span> <span class="nf">_setitem_slice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/core/frame.py</span> in <span class="ni">_set_item</span><span class="nt">(self, key, value)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2998</span> 
+<span class="g g-Whitespace">   </span><span class="mi">2999</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_valid_index</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">3000</span>         <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sanitize_column</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3001</span>         <span class="n">NDFrame</span><span class="o">.</span><span class="n">_set_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3002</span> 
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/core/frame.py</span> in <span class="ni">_sanitize_column</span><span class="nt">(self, key, value, broadcast)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3634</span> 
+<span class="g g-Whitespace">   </span><span class="mi">3635</span>             <span class="c1"># turn me into an ndarray</span>
+<span class="ne">-&gt; </span><span class="mi">3636</span>             <span class="n">value</span> <span class="o">=</span> <span class="n">sanitize_index</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3637</span>             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Index</span><span class="p">)):</span>
+<span class="g g-Whitespace">   </span><span class="mi">3638</span>                 <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+
+<span class="nn">~/anaconda3/lib/python3.7/site-packages/pandas/core/internals/construction.py</span> in <span class="ni">sanitize_index</span><span class="nt">(data, index, copy)</span>
+<span class="g g-Whitespace">    </span><span class="mi">609</span> 
+<span class="g g-Whitespace">    </span><span class="mi">610</span>     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">611</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Length of values does not match length of index&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">612</span> 
+<span class="g g-Whitespace">    </span><span class="mi">613</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ABCIndexClass</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">copy</span><span class="p">:</span>
+
+<span class="ne">ValueError</span>: Length of values does not match length of index
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">index_95</span><span class="p">[</span><span class="s2">&quot;Study&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dtype(&#39;O&#39;)
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="data-analysis-exploration">
 <h2>Data Analysis/Exploration<a class="headerlink" href="#data-analysis-exploration" title="Permalink to this headline">¶</a></h2>
+<p>Join all wins together, add column for what trial they were part of and also add how many partcipants were in that study</p>
+<p>Join all losses together, add column for what trial they were part of and also add how many partcipants were in that study</p>
+<p>Analysing the wins and losses for each number of trials</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">agg_choice_95</span> <span class="o">=</span> <span class="n">choice_95</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="o">.</span><span class="n">value_counts</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">agg_choice_100</span> <span class="o">=</span> <span class="n">choice_100</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="o">.</span><span class="n">value_counts</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">agg_choice_150</span> <span class="o">=</span> <span class="n">choice_150</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="o">.</span><span class="n">value_counts</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">agg_choice_100</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Subj_1</th>
+      <td>21</td>
+      <td>42</td>
+      <td>15</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>Subj_2</th>
+      <td>14</td>
+      <td>35</td>
+      <td>18</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <th>Subj_3</th>
+      <td>21</td>
+      <td>42</td>
+      <td>7</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>Subj_4</th>
+      <td>13</td>
+      <td>24</td>
+      <td>28</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th>Subj_5</th>
+      <td>15</td>
+      <td>31</td>
+      <td>28</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Subj_500</th>
+      <td>17</td>
+      <td>29</td>
+      <td>28</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>Subj_501</th>
+      <td>14</td>
+      <td>15</td>
+      <td>44</td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <th>Subj_502</th>
+      <td>27</td>
+      <td>32</td>
+      <td>17</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>Subj_503</th>
+      <td>27</td>
+      <td>25</td>
+      <td>23</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>Subj_504</th>
+      <td>10</td>
+      <td>24</td>
+      <td>12</td>
+      <td>54</td>
+    </tr>
+  </tbody>
+</table>
+<p>504 rows × 4 columns</p>
+</div></div></div>
+</div>
 <p>Join all wins together, add column for what trial they were part of and also add how many partcipants were in that study</p>
 <p>Join all losses together, add column for what trial they were part of and also add how many partcipants were in that study</p>
 </div>
@@ -408,19 +634,19 @@ They are as follows:</p>
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="markdown.html" title="previous page">
+        <a class="left-prev" href="intro.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Markdown Files</p>
+                <p class="prevnext-title">Introduction</p>
             </div>
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="preparation.html" title="next page">
+        <a class="right-next" href="markdown.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">TEST</p>
+                <p class="prevnext-title">Markdown Files</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>
