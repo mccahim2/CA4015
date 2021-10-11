@@ -6,7 +6,10 @@ Advanced Machine Learning Module DCU
 #### Introduction
 This assignment is a Clustering assignment based on the [Iowa Gambling Task](https://en.wikipedia.org/wiki/Iowa_gambling_task)
 
-
+#### Requirements:
+Python
+Jupyter-book
+Anacondas
 
 You can build this jupyter-book on your own system by performing the following command:
 ```
@@ -20,6 +23,9 @@ ghp-import -n -p -f mynewbook/_build/html
 
 ```
 
+#### Editing jupyter-book
+
+The best way to access and edit the jupyter book files is to run using anaconda navigator or using jupyter lab.
 
 
 #### Assignment work (Currently in progress)
