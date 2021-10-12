@@ -29,4 +29,4 @@ The best way to access and edit the jupyter book files is to run using anaconda 
 
 
 #### Assignment work (Currently in progress)
-The jupyter-book for this assignment can be found [here](https://mccahim2.github.io/jupyterbookgit/intro.html)
+The jupyter-book for this assignment can be found [here](https://mccahim2.github.io/ca4015-jupyterbook-assignment1/)
