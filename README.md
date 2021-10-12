@@ -41,5 +41,5 @@ The code for my jupyter-book work can be found on my [github repository](https:/
 The best way to access and edit the jupyter book files is to run using anaconda navigator or using jupyter lab.
 
 
-#### Assignment work (Currently in progress)
+#### Assignment work (Completed)
 The jupyter-book for this assignment can be found [here](https://mccahim2.github.io/ca4015-jupyterbook-assignment1/)
