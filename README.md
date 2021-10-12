@@ -23,7 +23,20 @@ ghp-import -n -p -f mynewbook/_build/html
 
 ```
 
+#### PDF version
+To see this book in pdf format you can do the following:
+```
+pip install pyppeteer
+```
+
+Then to build the book:
+```
+jupyter-book build mybookname/ --builder pdfhtml
+```
+
 #### Editing jupyter-book
+
+The code for my jupyter-book work can be found on my [github repository](https://github.com/mccahim2/ca4015-jupyterbook-assignment1)
 
 The best way to access and edit the jupyter book files is to run using anaconda navigator or using jupyter lab.
 
